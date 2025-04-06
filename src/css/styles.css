@@ -279,7 +279,7 @@ nav {
     display: flex;
     align-items: center;
     position: relative;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('../../public/images/hero-bg.jpg');
+    background: linear-gradient(to right,rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0)), url('../../public/images/hero-bg.jpg');
     background-size: cover;
     background-position: center;
     padding: 0 3rem;
@@ -375,7 +375,7 @@ nav {
 .categories {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2.5rem;
+    gap: 5rem;
     margin-top: 3rem;
 }
 
@@ -390,6 +390,7 @@ nav {
     background-size: cover;
     background-position: center;
     transition: var(--transition);
+aspect-ratio: 3/4;
 }
 
 .category:hover .category-img {
@@ -400,7 +401,9 @@ nav {
     margin-top: 1.5rem;
     font-size: 1.5rem;
     text-transform: uppercase;
-    letter-spacing: 1px;
+    letter-spacing: 0.3cap;
+    text-align: center;
+    
 }
 
 /* Featured Work Section */
