@@ -146,33 +146,6 @@ if (featuredGrid) {
     featuredGrid.style.setProperty('grid-template-columns', ['10fr'].concat(new Array(items.length - 1).fill('1fr')).join(' '));
 }
 
-// Contact form handling
-function initializeContactForm() {
-    if (!contactForm) return;
-
-    contactForm.addEventListener('submit', function(e) {
-        e.preventDefault();
-        
-        // In a real implementation, you'd send this data to a server
-        const formData = {
-            name: document.getElementById('name').value,
-            email: document.getElementById('email').value,
-            subject: document.getElementById('subject').value,
-            message: document.getElementById('message').value
-        };
-        
-        // For demo purposes, just log the data and show a success message
-        console.log('Form data:', formData);
-        
-        // Show success message
-        const successMessage = document.createElement('div');
-        successMessage.className = 'success-message';
-        successMessage.textContent = 'Thank you for your message! I will get back to you soon.';
-        
-        contactForm.innerHTML = '';
-        contactForm.appendChild(successMessage);
-    });
-}
 
 // Add animations to elements
 function initializeAnimations() {
@@ -221,4 +194,48 @@ function initializeAnimations() {
     
     // Animate skill items with staggered delay
     createAnimationObserver('.skill .software-item, .software-item', 50);
-} 
+}
+
+// Infinite horizontal scroll for testimonials with pause on hover and seamless loop (scrollLeft version)
+(function() {
+    const container = document.querySelector('.testimonials-container');
+    if (!container) return;
+    let isPaused = false;
+
+    // Clone all testimonial items and append them for seamless looping
+    const items = Array.from(container.children);
+    const originalCount = items.length;
+    items.forEach(item => {
+        const clone = item.cloneNode(true);
+        container.appendChild(clone);
+    });
+
+    // Calculate width of original set (including margin)
+    function getOriginalWidth() {
+        let width = 0;
+        for (let i = 0; i < originalCount; i++) {
+            const style = getComputedStyle(items[i]);
+            width += items[i].offsetWidth + parseFloat(style.marginLeft || 0) + parseFloat(style.marginRight || 0);
+        }
+        return width;
+    }
+
+    let speed = 0.5; // px per frame
+
+    function animate() {
+        if (!isPaused) {
+            const originalWidth = getOriginalWidth();
+            container.scrollLeft += speed;
+            if (container.scrollLeft >= originalWidth) {
+                container.scrollLeft = 0;
+            }
+        }
+        requestAnimationFrame(animate);
+    }
+
+    // Pause on hover
+    container.addEventListener('mouseenter', () => { isPaused = true; });
+    container.addEventListener('mouseleave', () => { isPaused = false; });
+
+    animate();
+})(); 

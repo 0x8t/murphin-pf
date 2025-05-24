@@ -378,6 +378,7 @@ nav {
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 5rem;
     margin-top: 3rem;
+    justify-content: center;
 }
 
 .category {
@@ -600,7 +601,7 @@ aspect-ratio: 3/4;
 
 .skills-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
     gap: 2rem;
 }
 
@@ -630,30 +631,35 @@ aspect-ratio: 3/4;
 
 .software-list {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 0.8rem;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 1.5rem;
+    justify-items: center;
 }
 
 /* Common styles for skill and software items */
 .skill .software-item,
 .software-item {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    padding: 0.8rem 1.2rem;
+    padding: 1.5rem 1rem;
     background-color: #f9f9f9;
     border-radius: 10px;
     transition: all 0.3s ease;
-    height: 48px;
+    height: auto;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
 .software-item {
-    gap: 0.8rem;
+    gap: 0.5rem;
 }
 
 .skill .software-item:hover,
 .software-item:hover {
     background-color: var(--secondary-color);
-    transform: translateY(-3px);
+    transform: translateY(-5px);
+    color: white;
 }
 
 .skill .software-item:hover h5,
@@ -666,28 +672,30 @@ aspect-ratio: 3/4;
     display: flex;
     align-items: center;
     justify-content: center;
-    min-width: 32px;
-    height: 32px;
+    min-width: 50px;
+    height: 50px;
     border-radius: 50%;
     background-color: rgba(224, 188, 152, 0.2);
     color: var(--secondary-color);
-    font-size: 1rem;
+    font-size: 1.8rem;
     transition: all 0.3s ease;
+    margin-bottom: 0.5rem;
 }
 
 .skill .software-item h5,
 .software-item h5 {
     margin: 0;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--primary-color);
     transition: all 0.3s ease;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    white-space: normal;
 }
 
-.software-item h5 {
-    white-space: nowrap;
+.software-item h5:last-child {
+    margin-bottom: 0;
 }
 
 /* Contact Section */
@@ -759,6 +767,81 @@ aspect-ratio: 3/4;
 .contact-email a:hover {
     color: var(--primary-color);
     border-bottom-color: var(--primary-color);
+}
+
+/* Testimonials Section */
+.testimonials {
+    padding: 2rem 3rem;
+    justify-content: center;
+}
+
+.testimonials-container {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 0;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+.testimonials-container::-webkit-scrollbar {
+    display: none;
+}
+
+.testimonial-item {
+    flex: 0 0 300px;
+    margin: 0 1rem;
+    background-color: #1a1a1a;
+    border-radius: 15px;
+    padding: 1.5rem;
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    color: #ccc;
+    transition: transform 0.3s ease, border-color 0.4s, box-shadow 0.4s;
+    border: 2px solid transparent;
+}
+
+.testimonial-item:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.testimonial-content p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+}
+
+.author-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 1rem;
+    object-fit: cover;
+}
+
+.author-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.author-name {
+    font-weight: 600;
+    color: #fff;
+}
+
+.author-title {
+    font-size: 0.9em;
+    color: #aaa;
 }
 
 /* Footer */
@@ -987,6 +1070,22 @@ footer {
         grid-template-columns: 1fr;
         gap: 3rem;
     }
+
+    .software-list {
+        grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+        gap: 1rem;
+    }
+
+    .software-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1.5rem;
+    }
+
+    .skill .software-item h5,
+    .software-item h5 {
+        font-size: 0.7rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -1027,6 +1126,19 @@ footer {
     .contact-link {
         width: 100%;
         justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .software-list {
+        grid-template-columns: repeat(auto-fit, minmax(70px, 1fr));
+        gap: 0.8rem;
+    }
+
+    .software-icon {
+        width: 35px;
+        height: 35px;
+        font-size: 1.3rem;
     }
 }
 
