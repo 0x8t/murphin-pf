@@ -374,17 +374,16 @@ nav {
 }
 
 .categories {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 5rem;
-    margin-top: 3rem;
-    justify-content: center;
+    display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 5rem;
+  margin-top: 3rem;
 }
 
 .category {
-    position: relative;
-    transition: transform 0.3s ease, opacity 0.8s ease;
-    overflow: hidden;
+    flex: 0 0 180px;
 }
 
 .category-img {
