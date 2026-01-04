@@ -1154,3 +1154,9 @@ footer {
         transform: translateY(0);
     }
 } 
+@media (max-width: 480px){
+    .body{
+        width:100%;
+    max-width:100%;
+    }
+}
